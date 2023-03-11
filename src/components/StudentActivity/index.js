@@ -6,7 +6,7 @@ import './index.css'
 
 const StudentActivity = props => {
   const getListFromLocalStorage = () => {
-    const stringifiedList = localStorage.getItem('arithmeticOperations')
+    const stringifiedList = localStorage.getItem('arithmeticOperations345')
 
     const parsedList = JSON.parse(stringifiedList)
 

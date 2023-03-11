@@ -19,7 +19,7 @@ class StudentRegistration extends Component {
   }
 
   getListFromLocalStorage = () => {
-    const stringifiedList = localStorage.getItem('studentSignUpList')
+    const stringifiedList = localStorage.getItem('studentSignUpList345')
 
     const parsedList = JSON.parse(stringifiedList)
 
@@ -44,7 +44,7 @@ class StudentRegistration extends Component {
 
     if (sameSignUpDetails === false) {
       const updatedList = [...parsedList, newObj]
-      localStorage.setItem('studentSignUpList', JSON.stringify(updatedList))
+      localStorage.setItem('studentSignUpList345', JSON.stringify(updatedList))
       this.setState({
         isItSuccess: true,
         name: '',

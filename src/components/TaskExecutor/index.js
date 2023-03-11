@@ -46,7 +46,7 @@ class TaskExecutor extends Component {
   }
 
   getListFromLocalStorage = () => {
-    const stringifiedList = localStorage.getItem('arithmeticOperations')
+    const stringifiedList = localStorage.getItem('arithmeticOperations345')
 
     const parsedList = JSON.parse(stringifiedList)
 
@@ -58,14 +58,22 @@ class TaskExecutor extends Component {
 
   addOperationInLocalStorage = () => {
     const {question, answer} = this.state
-    const parsedList = this.getListFromLocalStorage()
 
-    const newObj = {id: uuidV4(), question, answer}
+    if (answer !== '') {
+      const parsedList = this.getListFromLocalStorage()
 
-    const updatedList = [...parsedList, newObj]
+      const newObj = {id: uuidV4(), question, answer}
 
-    localStorage.setItem('arithmeticOperations', JSON.stringify(updatedList))
-    this.setState({question: '', answer: ''})
+      const updatedList = [...parsedList, newObj]
+
+      // console.log(updatedList)
+
+      localStorage.setItem(
+        'arithmeticOperations345',
+        JSON.stringify(updatedList),
+      )
+      this.setState({question: '', answer: ''})
+    }
   }
 
   calculateTheFunction = () => {
@@ -168,42 +176,42 @@ class TaskExecutor extends Component {
     return (
       <div className="execute-container">
         <div className="responsive-container2">
+          <h1 className="executor-heading"> Calculations </h1>
+          <div className="question-container">
+            <form onSubmit={this.onSubmitQuestions}>
+              <h1 className="question-container-heading">
+                Enter
+                <span className="span-heading">Question</span>
+              </h1>
+              <input
+                type="text"
+                className="question-input"
+                value={question}
+                onChange={this.onChangeQuestion}
+                placeholder="Eg: two(times(three()))"
+              />
+              <p className="error2"> {errorText} </p>
+              <button className="calculateButton" type="submit">
+                Get
+              </button>
+              <h1 className="question-container-heading">Answer</h1>
+              <p className="answer-para"> {answer} </p>
+            </form>
+            <button
+              className="calculateButton2"
+              type="button"
+              onClick={this.addOperationInLocalStorage}
+            >
+              Add
+            </button>
+          </div>
+
           <button
             className="logoutButton567"
             type="button"
             onClick={this.onLogoutButton}
           >
             Log out
-          </button>
-          <h1 className="executor-heading"> Calculations </h1>
-          <form
-            className="question-container"
-            onSubmit={this.onSubmitQuestions}
-          >
-            <h1 className="question-container-heading">
-              Enter
-              <span className="span-heading">Question</span>
-            </h1>
-            <input
-              type="text"
-              className="question-input"
-              value={question}
-              onChange={this.onChangeQuestion}
-              placeholder="Eg: two(times(three()))"
-            />
-            <p className="error2"> {errorText} </p>
-            <button className="calculateButton" type="submit">
-              Get
-            </button>
-            <h1 className="question-container-heading">Answer</h1>
-            <p className="answer-para"> {answer} </p>
-          </form>
-          <button
-            className="calculateButton2"
-            type="submit"
-            onClick={this.addOperationInLocalStorage}
-          >
-            Add
           </button>
         </div>
       </div>
